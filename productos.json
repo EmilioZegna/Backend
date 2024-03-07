@@ -1,0 +1,41 @@
+[
+    {
+        "id": 2,
+        "title": "Camiseta de fútbol",
+        "description": "Camiseta del Barcelona para adultos",
+        "price": 20000,
+        "img": "url-img",
+        "code": "123abc",
+        "stock": 5
+    },
+
+    {
+        "id": 3,
+        "title": "Camiseta de fútbol",
+        "description": "Camiseta del Real Madrid para adultos",
+        "price": 20000,
+        "img": "url-img",
+        "code": "1234abc",
+        "stock": 5
+    },
+
+    {
+        "id": 4,
+        "title": "Camiseta de fútbol",
+        "description": "Camiseta del Liverpool para adultos",
+        "price": 20000,
+        "img": "url-img",
+        "code": "12345abc",
+        "stock": 5
+    },
+
+    {
+        "id": 5,
+        "title": "Camiseta de fútbol",
+        "description": "Camiseta del Manchester City para adultos",
+        "price": 20000,
+        "img": "url-img",
+        "code": "123456abc",
+        "stock": 5
+    }
+]
