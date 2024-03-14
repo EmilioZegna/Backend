@@ -1,4 +1,4 @@
-const fs = require("fs")
+import fs from "fs";
 
 class ProductManager {
     static id = 0;
@@ -111,12 +111,12 @@ class ProductManager {
 
 const manager = new ProductManager();
 
-console.log(manager.getProducts());
+// console.log(manager.getProducts());
 
-manager.addProduct("Camiseta de fútbol", "Camiseta del Barcelona para adultos", 20000, "url-img", "123abc", 5);
-manager.addProduct("Camiseta de fútbol", "Camiseta del  Real Madrid para adultos", 20000, "url-img", "1234abc", 5);
-manager.addProduct("Camiseta de fútbol", "Camiseta del Liverpool para adultos", 20000, "url-img", "12345abc", 5);
-manager.addProduct("Camiseta de fútbol", "Camiseta del Manchester City para adultos", 20000, "url-img", "123456abc", 5);
+// manager.addProduct("Camiseta de fútbol", "Camiseta del Barcelona para adultos", 20000, "url-img", "123abc", 5);
+// manager.addProduct("Camiseta de fútbol", "Camiseta del  Real Madrid para adultos", 20000, "url-img", "1234abc", 5);
+// manager.addProduct("Camiseta de fútbol", "Camiseta del Liverpool para adultos", 20000, "url-img", "12345abc", 5);
+// manager.addProduct("Camiseta de fútbol", "Camiseta del Manchester City para adultos", 20000, "url-img", "123456abc", 5);
 //repeticion de ID
 // manager.addProduct("producto prueba 3", "este es el tercer producto prueba", 500, "sin imagen", "abc1234", 35);
 
@@ -132,3 +132,5 @@ manager.addProduct("Camiseta de fútbol", "Camiseta del Manchester City para adu
 
 //eliminando un producto
 // manager.deleteProduct(1)
+
+export default ProductManager

@@ -37,5 +37,48 @@
         "img": "url-img",
         "code": "123456abc",
         "stock": 5
+    },
+    {
+        "id": 6,
+        "title": "Camiseta de fútbol",
+        "description": "Camiseta del PSG para adultos",
+        "price": 22000,
+        "img": "url-img",
+        "code": "1234567abc",
+        "stock": 7
+    },
+    {
+        "id": 7,
+        "title":"Camiseta de fútbol",
+        "description":"Camiseta del Porto para adultos",
+        "price": 15000,
+        "img": "url-img",
+        "code":"12345678abc",
+        "stock": 10
+    },
+    {
+        "id": 8,
+        "title": "Camiseta de fútbol",
+        "description":"Camiseta de la Fiorentina para adultos",
+        "price": 12000,
+        "img":"url-img",
+        "code":"123456789abc",
+        "stock": 4
+    },
+    {
+        "id": 9,
+        "title":"Camiseta de fútbol",
+        "description":"Camiseta de la Juventus para adultos",
+        "price": 20000,
+        "img": "url-img",
+        "code": "123456789abcd",
+        "stock": 5
+    },
+
+    {
+        "id": 10,
+        "title":"Camiseta de fútbol",
+        "description":"Camiseta del Tottenham para adultos",
+        "price": 16000
     }
 ]
