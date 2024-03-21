@@ -1,45 +1,21 @@
-import fs from "fs";
-import ProductManager from "./main";
-import express from "express"
-const PUERTO = 8080
-const app = express()
+const express = require("express");
+const app = express();
+const PUERTO = 8080;
+const productsRouter = require("./routes/productsRouter");
+const cartsRouter = require("./routes/cartsRouter");
 
-const productManager = new ProductManager()
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+app.get("/", (req, res) => {
+    res.send("Funcionando de manera óptima")
+})
+
+app.use("/api", productsRouter);
+app.use("/api", cartsRouter);
 
 app.listen(PUERTO, () => {
-    console.log(`Puerto: ${PUERTO}`)
+    console.log(`Escuchando en el puerto: ${PUERTO}`)
 })
 
-app.get("/products", async (req,res) => {
-    try {
-        const products = await fs.promises.readFile("../productos.json", "utf-8")
-        const productsJSON = JSON.parse(products)
-        let limit = Number(req.query.limit)
-        let limitProducts = productsJSON.slice(0, limit)
 
-        if (limit) {
-            res.send(limitProducts)
-        } else {
-            res.send(productsJSON)
-        }
-    } catch (error) {
-        console.log("Error", error)
-    }
-})
-
-app.get("/products/:pid", async (req,res) => {
-    try {
-        const products = await fs.promises.readFile("../productos.json", "utf-8")
-        const productsJSON = JSON.parse(products)
-        const id = parseInt(req.params.pid)
-        const idProduct = productsJSON.find(prod => prod.id === id)
-
-        if (idProduct) {
-            res.send(idProduct)
-        } else {
-            res.send("Producto no disponible")
-        }
-    } catch (error) {
-        console.log("Error", error)
-    }
-})
