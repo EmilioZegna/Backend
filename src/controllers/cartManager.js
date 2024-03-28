@@ -1,5 +1,4 @@
-const fs = require("fs").promises;
-
+import fs from "fs";
 class CartManager {
     constructor(path) {
         this.carts = [];
@@ -68,6 +67,5 @@ class CartManager {
     }
 }
 
-module.exports = CartManager;
-
+export default CartManager
 

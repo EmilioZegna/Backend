@@ -1,0 +1,10 @@
+<section class="container">
+  {{#each productsJson}}
+    <div class="card">
+      <p>Descripción: {{this.description}}</p>
+      <p>Categoría: {{this.category}}</p>
+      <h3>Precio: ${{this.price}}</h3>
+      <button class="buttonCard">Eliminar</button>
+    </div>
+  {{/each}}
+</section>

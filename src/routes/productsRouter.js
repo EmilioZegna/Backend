@@ -1,73 +1,146 @@
-const express = require("express");
-const router = express.router();
+import fs from "fs";
+import express from "express"
+const router = express.Router()
 
-const ProductManager = require("../controllers/productManager");
-const productManager = new ProductManager("/src/models/productos.json");
+import ProductManager from "../controllers/productManager"
+const productManager = new ProductManager()
 
-router.get("/products", async (req, res) => {
+router.get("/api/products", async (req, res) => {
     try {
-        const limit = req.query.limit;
-        const productos = await productManager.getProducts();
+        const products = await fs.promises.readFile("/src/models/productos.json", "utf-8")
+        const productsJson = JSON.parse(products)
+
+        let limit = Number(req.query.limit)
+       
+        let productsLimit = productsJson.slice(0, limit)
+        
         if (limit) {
-            res.json(productos.slice(0, limit));
+            res.send(productsLimit)
         } else {
-            res.json(productos);
+            res.send(productsJson)
         }
     } catch (error) {
-        console.error("Error con los productos", error);
+        console.log("Error", error)
         res.status(500).json({
-            error:"Error en el servidor"
+            error: "Error del servidor"
+        })
+    }
+})
+
+router.get("/api/products/:pid", async (req, res) => {
+    try {
+        const products = await fs.promises.readFile("/src/models/productos.json", "utf-8")
+        const productsJson = JSON.parse(products)
+        const id = parseInt(req.params.pid)
+        const productId = productsJson.find(prod => prod.id === id)
+        
+        if (productId) {
+            res.send(productId)
+        } else {
+            res.send("El producto no se encuentra disponible")
+        }
+    } catch (error) {
+        console.log("Error", error)
+        res.status(500).json({
+            error: "Error del servidor"
         });
     }
 })
 
-router.get("/products/:pid", async (req, res) => {
-
-    const id = req.params.pid;
-
+router.post("/api/products", async (req, res) => {
     try {
-        const producto = await productManager.getProductById(parseInt(id));
-        if (!producto) {
-            return res.json({
-                error:"El producto no se encuentra disponible"
-            });
+        const { title, description, price, img, code, stock, status, category } = req.body
+
+        if (!title || !description || !price || !img || !code || !stock) {
+            return res.status(400).json({ error: "Faltan datos" })
         }
 
-        res.json(producto);
+        const products = await fs.promises.readFile("/src/models/productos.json", "utf-8")
+        const productsJson = JSON.parse(products)
+
+        const newProductId = productsJson.length > 0 ? productsJson[productsJson.length - 1].id + 1 : 1
+
+        const newProduct = {
+            id: newProductId,
+            title,
+            description,
+            price,
+            img,
+            code,
+            stock,
+            status,
+            category
+        }
+
+        productsJson.push(newProduct)
+
+        await fs.promises.writeFile("/src/models/productos.json", JSON.stringify(productsJson))
+
+        res.status(201).json({ message: "Producto agregado" })
     } catch (error) {
-        console.error("Error con el producto", error);
-        res.status(500).json({
-            error:"Error en el servidor"
-        });
+        console.error("Error:", error)
+        res.status(500).json({ error: "Error del servidor" })
     }
 })
 
-router.post("/products", async (req, res) => {
-    const productoNuevo = req.body;
-
+router.put("/api/products/:pid", async (req, res) => {
     try {
-        await productManager.addProduct(productoNuevo);
-        res.status(201).json({message: "El producto fue agregado."});
+        const productId = parseInt(req.params.pid)
+        const updatedFields = req.body
+
+        if (isNaN(productId)) {
+            return res.status(400).json({ error: "ID inválido" })
+        }
+
+        const products = await fs.promises.readFile("/src/models/productos.json", "utf-8")
+        const productsJson = JSON.parse(products)
+
+        const productIndex = productsJson.findIndex(item => item.id === productId)
+
+        if (productIndex === -1) {
+            return res.status(404).json({ error: "Producto no disponible" })
+        }
+
+        const updatedProduct = { ...productsJson[productIndex], ...updatedFields }
+        productsJson[productIndex] = updatedProduct
+
+        await fs.promises.writeFile("/src/models/productos.json", JSON.stringify(productsJson))
+
+        res.status(200).json({ message: "El producto fue actualizado", updatedProduct })
     } catch (error) {
-        res.status(500).json({
-            error:"Error en el servidor"
-        });
+        console.error("Error:", error)
+        res.status(500).json({ error: "Error del servidor" })
     }
-})
+});
 
-router.delete("/products/:pid", async (req, res) => {
-    const id = req.params.pid;
-
+router.delete("/api/products/:pid", async (req, res) => {
     try {
-        await productManager.deleteProduct(parseInt(id));
-        res.json({
-            message: "El producto ha sido eliminado."
-        });
+        const readFile = await fs.promises.readFile("/src/models/productos.json", "utf-8")
+        let products = JSON.parse(readFile)
+
+        const id = parseInt(req.params.pid)
+
+        if (isNaN(id)) {
+            res.status(404).json({ error: "El ID es incorrecto" })
+            return; 
+        }
+
+        const productIndex = products.findIndex(product => product.id === id)
+
+        if (productIndex === -1) {
+            res.status(404).json({ error: "No se encontró ningún producto" })
+            return; 
+        }
+
+        products = products.filter(product => product.id !== id)
+
+        await fs.promises.writeFile("/src/models/productos.json", JSON.stringify(products))
+
+        res.status(200).json({ message: "Producto eliminado" })
     } catch (error) {
-        res.status(500).json({
-            error: "Error en el servidor."
-        });
+        console.error("Error:", error)
+        res.status(500).json({ error: "Error del servidor" })
     }
 })
 
-module.exports = router;
+export default router;

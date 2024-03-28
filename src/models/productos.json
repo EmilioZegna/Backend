@@ -6,7 +6,9 @@
         "price": 20000,
         "img": "url-img",
         "code": "123abc",
-        "stock": 5
+        "stock": 5,
+        "status": true,
+        "category": "Camisetas de futból"
     },
 
     {
@@ -16,7 +18,9 @@
         "price": 20000,
         "img": "url-img",
         "code": "1234abc",
-        "stock": 5
+        "stock": 5,
+        "status": true,
+        "category": "Camisetas de futból"
     },
 
     {
@@ -26,7 +30,9 @@
         "price": 20000,
         "img": "url-img",
         "code": "12345abc",
-        "stock": 5
+        "stock": 5,
+        "status": true,
+        "category": "Camisetas de futból"
     },
 
     {
@@ -36,7 +42,9 @@
         "price": 20000,
         "img": "url-img",
         "code": "123456abc",
-        "stock": 5
+        "stock": 5,
+        "status": true,
+        "category": "Camisetas de futból"
     },
     {
         "id": 6,
@@ -45,7 +53,9 @@
         "price": 22000,
         "img": "url-img",
         "code": "1234567abc",
-        "stock": 7
+        "stock": 7,
+        "status": true,
+        "category": "Camisetas de futból"
     },
     {
         "id": 7,
@@ -54,7 +64,9 @@
         "price": 15000,
         "img": "url-img",
         "code":"12345678abc",
-        "stock": 10
+        "stock": 10,
+        "status": true,
+        "category": "Camisetas de futból"
     },
     {
         "id": 8,
@@ -63,7 +75,9 @@
         "price": 12000,
         "img":"url-img",
         "code":"123456789abc",
-        "stock": 4
+        "stock": 4,
+        "status": true,
+        "category": "Camisetas de futból"
     },
     {
         "id": 9,
@@ -72,13 +86,20 @@
         "price": 20000,
         "img": "url-img",
         "code": "123456789abcd",
-        "stock": 5
+        "stock": 5,
+        "status": true,
+        "category": "Camisetas de futból"
     },
 
     {
         "id": 10,
         "title":"Camiseta de fútbol",
         "description":"Camiseta del Tottenham para adultos",
-        "price": 16000
+        "price": 16000,
+        "img":"url-img",
+        "code": "123456789abcde",
+        "stock": 6,
+        "status": true,
+        "category": "Camisetas de futból"
     }
 ]

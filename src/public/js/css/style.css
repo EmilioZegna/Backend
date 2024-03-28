@@ -1,0 +1,81 @@
+body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.titulo,
+.tituloRtp {
+    text-align: center;
+    color: black;
+    padding: 20px;
+}
+
+.subtitulo {
+    color: black;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 75%;
+    margin: auto;
+}
+
+.card,.cardRtp {
+    width: 280px;
+    color: white;
+    padding: 10px;
+    border: 1px solid rgb(255, 253, 253);
+    border-radius: 8px;
+}
+
+.buttonCard, .buttonRtp {
+    border: none;
+    background-color: whitesmoke;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    color: orange;
+}
+
+.tituloForm {
+    color: white;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: auto;
+    gap: 1rem;
+    border: 1px solid white;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.input {
+    padding: 8px;
+}
+
+.buttonForm {
+    border: none;
+    background-color: springgreen;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.contentProducts{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+}
