@@ -8,7 +8,7 @@ const app = express ()
 
 app.engine("handlebars", exphbs.engine())
 app.set("view engine", "handlebars")
-app.set("views", "/src/views")
+app.set("views", "./src/views") 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

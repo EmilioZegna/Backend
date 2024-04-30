@@ -74,7 +74,7 @@ router.post("/api/products", async (req, res) => {
 
         productsJson.push(newProduct)
 
-        await fs.promises.writeFile("/src/models/productos.json", JSON.stringify(productsJson))
+        await fs.promises.writeFile("./src/models/productos.json", JSON.stringify(productsJson))
 
         res.status(201).json({ message: "Producto agregado" })
     } catch (error) {
